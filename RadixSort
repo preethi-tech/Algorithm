@@ -1,0 +1,77 @@
+import java.util.*;
+class Radix
+{
+      void Sort(int a[],int n)
+   {
+       	int max = a[0];
+		for(int i = 1; i < n; i++)
+		{
+		    if(a[i]>max)
+		    {
+		        max = a[i];
+		    }
+		}
+		
+		int maxLength = String.valueOf(max).length();
+		 
+		for(int i = 0, div = 1; i < maxLength ; i++, div *= 10 )
+		{
+		    countSort(a,div);
+		}
+		 System.out.println("Sorted array");
+      for(int i=0;i<n;i++)
+      {
+      System.out.println(a[i] );
+      }
+	}
+	
+	void countSort(int [] a, int div)
+	{
+	    int [] temp = new int[10];
+	    int [] output = new int [a.length];
+	    
+	    for(int i = 0 ; i < a.length; i++)
+	    {
+	        int val = (a[i]/div)%10;
+	        temp[val]++;
+	    }
+
+	    temp[0] = temp[0]-1;
+	    for(int i = 1; i < 10 ; i++)
+	    {
+	        temp[i] += temp[i-1];
+	    }
+	    
+	    for(int i = a.length-1; i >= 0 ; i --)
+	    {
+	        int val = (a[i]/div)%10;
+	        int index = temp[val]--;
+	        output[index]=a[i];
+	    }
+	    
+	    for(int i = 0 ; i < a.length ; i++)
+	    {
+	        a[i]= output[i];
+	    }
+	   
+   }
+}
+
+ public class Main {
+     public static void main(String[] args)
+  {
+      Scanner inp= new Scanner(System.in);     
+      System.out.println("Enter size of the array: ");  
+      int n= inp.nextInt();
+      int[] a= new int[n];
+      System.out.print("Enter the numbers to sort :");
+      for (int i = 0; i < n; i++) 
+      {
+          System.out.println();
+          a[i] = inp.nextInt();   
+      }
+     
+        Radix r = new Radix();
+        r.Sort(a,n);
+     }
+}
