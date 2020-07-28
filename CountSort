@@ -1,0 +1,55 @@
+import java.util.*;
+class Count
+{
+      void Sort(int a[],int n)
+   {
+ int minimum = a[0];
+		int maximum = a[0];
+		for(int i=0;i<a.length;i++) {
+			if(a[i]<minimum)
+				minimum = a[i];
+			if(a[i]>maximum)
+				maximum = a[i];
+		}
+		for(int i=0;i<a.length;i++) {
+			a[i]-=minimum;
+		}
+		int bucket[] = new int[maximum-minimum+1];
+		for(int i=0;i<a.length;i++) {
+			bucket[a[i]]++;
+		}
+		int index = 0;
+		for(int i=0;i<bucket.length;i++) {
+			if(bucket[i]==0) {
+				continue;
+			}
+			for(int j=0;j<bucket[i];j++) {
+				a[index++] = i+minimum;
+			}
+		}
+      System.out.println("Sorted array");
+      for(int i=0;i<n;i++)
+      {
+      System.out.println(a[i] );
+      }
+   }
+}
+
+ public class Main {
+     public static void main(String[] args)
+  {
+      Scanner inp= new Scanner(System.in);     
+      System.out.println("Enter size of the array: ");  
+      int n= inp.nextInt();
+      int[] a= new int[n];
+      System.out.print("Enter the numbers to sort :");
+      for (int i = 0; i < n; i++) 
+      {
+          System.out.println();
+          a[i] = inp.nextInt();   
+      }
+     
+        Count c = new Count();
+        c.Sort(a,n);
+     }
+}
