@@ -1,0 +1,394 @@
+
+import java.util.*;
+class Sorting
+{
+	 void bubbleSort(int a[],int n)
+	   {
+	       for(int i=0;i<n-1;i++)
+	       {
+	          for(int j=0;j<n-i-1;j++)
+	              if(a[j] > a[j+1])
+	              {
+	               int temp=a[j];
+	               a[j]=a[j+1];
+	               a[j+1]=temp;
+	              }
+	          }
+	      System.out.println(" Bubble Sorted array");
+	      for(int i=0;i<n;i++)
+	      {
+	      System.out.println(a[i] );
+	      }
+	      System.out.println("Time complexity :" + " O(n^2)");
+	      System.out.println("Space complexity :" + " O(1)");
+	   }
+	 void selectionSort(int a[] , int n)
+	   {
+	     for(int i=0;i<n;i++)
+	       {
+	           for(int j=i+1;j<n;j++)
+	           {
+	               if(a[i]>a[j])
+	               {
+	                    int temp=a[i];
+	                    a[i]=a[j];
+	                    a[j]=temp;
+	               }
+	           }
+	       }
+	        System.out.println(" Selection Sorted array");
+	        for (int i=0; i<n; i++) {
+	            System.out.println(a[i]);    
+	      }
+	        System.out.println("Time complexity :" + " O(n^2)");
+	        System.out.println("Space complexity :" + "O(1)");
+	        
+	   }
+	
+      void insertionSort(int a[],int n) {
+    	    for(int i=1 ; i<n ;i++)
+    	    {
+    	        int temp = a[i];
+    	        int j;
+    	      for( j=i-1;(j>=0) && (a[j]>temp);j--)
+    	      {
+    	        a[j+1] = a[j];
+    	      }
+    	        a[j+1] = temp;
+    	      }
+    	    
+    	     System.out.println("Insertion sorted array");
+    	      for(int i=0; i<n; i++)
+    	      {
+    	         System.out.println( a[i]);
+    	      }
+    	      System.out.println("Time complexity :" + " O(n^2)");
+    	      System.out.println("Space complexity :" + "O(1)");
+    	     }
+	    
+
+    	  void mergeSort(int a[], int l, int m, int r) 
+    	    { 
+    	        int n1 = m - l + 1; 
+    	        int n2 = r - m; 
+    	 
+    	        int a1[] = new int[n1]; 
+    	        int a2[] = new int[n2]; 
+    	  
+    	        for (int i = 0; i < n1; ++i) 
+    	            a1[i] = a[l + i]; 
+    	        for (int j = 0; j < n2; ++j) 
+    	            a2[j] = a[m + 1 + j]; 
+    
+    	        int i = 0, j = 0; 
+    	        int k = l; 
+    	        while (i < n1 && j < n2) { 
+    	            if (a1[i] <= a2[j]) { 
+    	                a[k] = a1[i]; 
+    	                i++; 
+    	            } 
+    	            else { 
+    	                a[k] = a2[j]; 
+    	                j++; 
+    	            } 
+    	            k++; 
+    	        } 
+    	
+    	        while (i < n1) { 
+    	            a[k] = a1[i]; 
+    	            i++; 
+    	            k++; 
+    	        } 
+
+    	        while (j < n2) { 
+    	            a[k] = a2[j]; 
+    	            j++; 
+    	            k++; 
+    	        } 
+    	    } 
+    	    void Sort(int a[], int l, int r) 
+    	    { 
+    	        if (l < r) { 
+    	            int m = (l + r) / 2; 
+    	            Sort(a, l, m); 
+    	            Sort(a, m + 1, r); 
+    	            mergeSort(a, l, m, r); 
+    	        } 
+   }
+    	    
+    	     void quicksort(int[] a, int min, int max) {
+    			int i, j, pivot, temp;
+    			if(min < max) {
+    				pivot = min;
+    				i = min;
+    				j = max;
+    	      while(i < j) {
+    					while(a[i] <= a[pivot] && i < max) {
+    						i++;
+    					}
+    					while(a[j] > a[pivot]) {
+    						j--;
+    					}
+    					if(i < j) {
+    						temp = a[i];
+    						a[i] = a[j];
+    						a[j] = temp;
+    					}
+    				}
+    				 temp=a[pivot];
+    	             a[pivot]=a[j];
+    	             a[j]=temp;
+    	             quicksort(a,min,j-1);
+    	             quicksort(a,j+1,max);
+    			}
+}
+    	     void quicksort3(int[] a, int min, int max) {
+    	 		int i, j, pivot, temp;
+    	 		if(min < max) {
+    	 			pivot = min;
+    	 			i = min;
+    	 			j = max;
+    	       while(i < j) {
+    	 				while(a[i] <= a[pivot] && i < max) {
+    	 					i++;
+    	 				}
+    	 				while(a[j] > a[pivot]) {
+    	 					j--;
+    	 				}
+    	 				if(i < j) {
+    	 					temp = a[i];
+    	 					a[i] = a[j];
+    	 					a[j] = temp;
+    	 				}
+    	 			}
+    	 			 temp=a[pivot];
+    	              a[pivot]=a[j];
+    	              a[j]=temp;
+    	              quicksort3(a,min,j-1);
+    	              quicksort3(a,j+1,max);
+    	 		}    
+    	     
+}
+    	     void maxheap(int a[] , int n , int i)
+    	     {
+    	       int l = 2 * i + 1;
+    	       int r = 2 * i + 2;
+    	        int bigChild = l;
+    	        if( r < n && a[l] < a[r])
+    	        {
+    	             bigChild = r;
+    	        }
+    	        if ( a[bigChild] > a[i])
+    	        {
+    	            int temp = a[i] ;
+    	            a[i] = a[bigChild] ;
+    	            a[bigChild] = temp ;
+    	     
+    	        }
+    	     }
+
+    	      public  int[] sort(int a[])
+    	      {
+    	        
+    	         for(int j = a.length; j>1; j--) 
+    	          {
+    	              for( int i = j/2 -1; i>=0; i--) 
+    	                { 
+    	                    maxheap(a, j, i);
+    	                }
+    	              int temp =a[j-1];
+    	              a[j-1] = a[0];
+    	              a[0] = temp;
+    	          }
+    	            return a;
+    	    }
+    	      void shellSort(int a[],int n)
+    	      
+    	      {
+
+    	   	    for(int gap = n/2; gap > 0; gap = gap/2)
+    	   	    {
+    	   	        for(int forward = gap; forward < n; forward++)
+    	   	        {
+    	   	            int tbi = a[forward], reverse; 
+    	   	            for(reverse = forward - gap; reverse >= 0; reverse = reverse - gap)
+    	   	            {                        
+    	   	                if(tbi < a[reverse])
+    	   	                {
+    	   	                  a[reverse + gap] = a[reverse];
+    	   	                }                        
+    	   	                else 
+    	   	                {
+    	   	                    break;
+    	   	                }
+    	   	            }
+    	   	            a[reverse + gap] = tbi; 
+    	   	          }
+    	   	        }
+    	   	   
+    	         
+    	         System.out.println("Shell Sorted array");
+    	         for(int i=0;i<n;i++)
+    	         {
+    	         System.out.println(a[i] );
+    	         }
+    	         System.out.println("Time complexity :");
+   		         System.out.println("Space complexity :");
+    	      }
+    	      
+    	      void countSort(int a[],int n)
+    	      {
+    	           int min = a[0];
+    	   		int max = a[0];
+    	   		for(int i=0;i<n;i++) {
+    	   			if(a[i]<min)
+    	   				min = a[i];
+    	   			if(a[i]>max)
+    	   				max = a[i];
+    	   		}
+    	   		for(int i=0;i<n;i++) {
+    	   			a[i]-=min;
+    	   		}
+    	   		int bucket[] = new int[max-min+1];
+    	   		for(int i=0;i<n;i++) {
+    	   			bucket[a[i]]++;
+    	   		}
+    	   		int index = 0;
+    	   		for(int i=0;i<bucket.length;i++) {
+    	   			if(bucket[i]==0) {
+    	   				continue;
+    	   			}
+    	   			for(int j=0;j<bucket[i];j++) {
+    	   				a[index++] = i+min;
+    	   			}
+    	   		}
+    	         System.out.println("Count Sorted array");
+    	         for(int i=0;i<n;i++)
+    	         {
+    	         System.out.println(a[i] );
+    	         }
+    	         System.out.println("Time complexity :O(n + k)");
+   		         System.out.println("Space complexity :O(k)");
+    	      }
+    	      void radixSort(int a[],int n)
+    	      {
+    	          	int max = a[0];
+    	   		for(int i = 1; i < n; i++)
+    	   		{
+    	   		    if(a[i]>max)
+    	   		    {
+    	   		        max = a[i];
+    	   		    }
+    	   		}
+    	   		
+    	   		int maxLength = String.valueOf(max).length();
+    	   		 
+    	   		for(int i = 0, div = 1; i < maxLength ; i++, div *= 10 )
+    	   		{
+    	   		    count(a,div);
+    	   		}
+    	   		 System.out.println("Radix Sorted array");
+    	         for(int i=0;i<n;i++)
+    	         {
+    	         System.out.println(a[i] );
+    	         }
+    	         System.out.println("Time complexity :O(nk)");
+   		         System.out.println("Space complexity :O(n + k)");
+    	   	}
+    	   	
+    	   	void count(int [] a, int div)
+    	   	{
+    	   	    int [] temp = new int[10];
+    	   	    int [] output = new int [a.length];
+    	   	    
+    	   	    for(int i = 0 ; i < a.length; i++)
+    	   	    {
+    	   	        int val = (a[i]/div)%10;
+    	   	        temp[val]++;
+    	   	    }
+
+    	   	    temp[0] = temp[0]-1;
+    	   	    for(int i = 1; i < 10 ; i++)
+    	   	    {
+    	   	        temp[i] += temp[i-1];
+    	   	    }
+    	   	    
+    	   	    for(int i = a.length-1; i >= 0 ; i --)
+    	   	    {
+    	   	        int val = (a[i]/div)%10;
+    	   	        int index = temp[val]--;
+    	   	        output[index]=a[i];
+    	   	    }
+    	   	    
+    	   	    for(int i = 0 ; i < a.length ; i++)
+    	   	    {
+    	   	        a[i]= output[i];
+    	   	    }
+    	   	   
+    	      }
+    	      
+}
+
+ public class Main {
+     public static void main(String[] args)
+  {
+      Scanner inp= new Scanner(System.in);     
+      System.out.println("Enter size of the array: ");  
+      int n= inp.nextInt();
+      int[] a= new int[n];
+      System.out.print("Enter the numbers to sort :");
+      for (int i = 0; i < n; i++) 
+      {
+          System.out.println();
+          a[i] = inp.nextInt();   
+      }
+     
+        Sorting st = new Sorting();
+        
+        st.bubbleSort(a,n);
+        
+        st.selectionSort(a, n);
+        
+        st.insertionSort(a, n);
+        
+        st.Sort(a,0,n-1);
+        System.out.println("Merge Sorted array");
+        for(int i=0;i<a.length;i++)
+        {
+          System.out.println(a[i] );
+        }
+        System.out.println("Time complexity :" + " O(n log (n))");
+	    System.out.println("Space complexity :" + "O(n)");
+	      
+	     st.quicksort(a,0,n-1);
+	     System.out.println("Quick sorted array ");
+	    	for(int i = 0; i < n; i++) {
+	  			System.out.println(a[i]);
+	  		   }
+	      System.out.println("Time complexity :" + " O(n)");
+	      System.out.println("Space complexity :" + "O(1)");
+		    
+	     st.quicksort3(a,0,n-1);
+	     System.out.println("Quick3 sorted array ");
+	        for(int i = 0; i < n; i++) {
+		  			System.out.println(a[i]);
+		  		}
+		  System.out.println("Time complexity :" + " O(n)");
+	      System.out.println("Space complexity :" + "O(1)");
+			 
+		  st.sort(a);
+	      System.out.println("Heap Sorted array");
+		     for(int i=0;i<a.length;i++)
+		      {
+		      System.out.println(a[i] );
+		      }
+	     System.out.println("Time complexity :");
+         System.out.println("Space complexity :" );
+		      
+	     st.shellSort(a, n);
+		      
+	     st.count(a, n);
+		      
+		 st.radixSort(a, n);
+     }
+}
