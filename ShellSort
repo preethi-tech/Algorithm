@@ -1,0 +1,54 @@
+import java.util.*;
+class Shell
+{
+      void Sort(int a[],int n)
+   
+   {
+
+	    for(int gap = n/2; gap > 0; gap = gap/2)
+	    {
+	        for(int forward = gap; forward < n; forward++)
+	        {
+	            int tbi = a[forward], reverse; 
+	            for(reverse = forward - gap; reverse >= 0; reverse = reverse - gap)
+	            {                        
+	                if(tbi < a[reverse])
+	                {
+	                  a[reverse + gap] = a[reverse];
+	                }                        
+	                else 
+	                {
+	                    break;
+	                }
+	            }
+	            a[reverse + gap] = tbi; 
+	          }
+	        }
+	   
+      
+      System.out.println("Sorted array");
+      for(int i=0;i<n;i++)
+      {
+      System.out.println(a[i] );
+      }
+   }
+}
+
+ public class Main {
+     public static void main(String[] args)
+  {
+      Scanner inp= new Scanner(System.in);     
+      System.out.println("Enter size of the array: ");  
+      int n= inp.nextInt();
+      int[] a= new int[n];
+      System.out.print("Enter the numbers to sort :");
+      for (int i = 0; i < n; i++) 
+      {
+          System.out.println();
+          a[i] = inp.nextInt();   
+      }
+     
+        Shell s = new Shell();
+        s.Sort(a,n);
+     }
+}
