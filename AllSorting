@@ -1,3 +1,5 @@
+package javahm;
+
 
 import java.util.*;
 class Sorting
@@ -387,7 +389,7 @@ class Sorting
 		      
 	     st.shellSort(a, n);
 		      
-	     st.count(a, n);
+	     st.countSort(a, n);
 		      
 		 st.radixSort(a, n);
      }
